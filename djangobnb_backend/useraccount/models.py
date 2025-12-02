@@ -51,3 +51,5 @@ class User(AbstractBaseUser, PermissionsMixin):
             return f'{settings.WEBSITE_URL}{self.avatar.url}'
         else:
             return ''
+
+   

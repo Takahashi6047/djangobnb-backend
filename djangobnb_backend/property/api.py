@@ -18,6 +18,17 @@ def properties_list(request):
     })
 
 
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
+def properties_detail(request, pk):
+    property = Property.objects.get(pk=pk)
+
+    serializer = PropertiesDetailSerializer(property, many=False)
+
+    return JsonResponse(serializer.data)
+
+
 @api_view(['POST', 'FILES'])
 def create_property(request):
     form = PropertyForm(request.POST, request.FILES)
