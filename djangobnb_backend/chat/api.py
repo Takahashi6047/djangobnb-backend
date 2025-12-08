@@ -27,6 +27,7 @@ def conversations_detail(request, pk):
         'messages': messages_serializer.data
     }, safe=False)
 
+# start new converstion between landlord
 @api_view(['GET'])
 def conversations_start(request, user_id):
     conversations = Conversation.objects.filter(users__in=[user_id]).filter(users__in=[request.user.id])
@@ -41,4 +42,4 @@ def conversations_start(request, user_id):
         conversation.users.add(request.user)
         conversation.users.add(user)
 
-        return JsonResponse({'success': True, 'conversation_id': conversation.id})
+        return JsonResponse({'success': True, 'conversation_id': conversation.id}) 
